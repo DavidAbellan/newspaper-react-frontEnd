@@ -11,7 +11,7 @@ function header(date) {
                       <header>El Mundo Tolai</header>
                 </div>
 
-            <div className="subhead">{dateFormat}</div>
+            <div className="subheadHeader">{dateFormat}</div>
             <br></br>
             </div>
             

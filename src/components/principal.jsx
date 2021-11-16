@@ -3,6 +3,7 @@ import axios from "axios";
 import Article from './article';
 import Column from './column';
 import Header from './header';
+import CategorySelect from './categorySelect';
 
 const url = "http://localhost:3000/";
 class Principal extends React.Component {
@@ -31,6 +32,7 @@ class Principal extends React.Component {
           columns : content.data.columns,
           categories : content.data.categories
       });
+      console.log("principal", this.state)
     
 
     }    
@@ -42,9 +44,12 @@ class Principal extends React.Component {
         } else {
             return  (
             <div className="front">
+                <CategorySelect {...this.state.categories} ></CategorySelect>
                 <Header {...this.state.timer}></Header>
-                {this.state.articles.map(a =><div className="article"><Article {...a}></Article></div>)}
-                {this.state.columns.map(c =><div className="column"><Column {...c}></Column></div> )}
+                <div className="content">
+                  {this.state.articles.map(a =><div className="article "><Article {...a}></Article></div>)}
+                  {this.state.columns.map(c =><div className="column"><Column {...c}></Column></div> )}
+                </div>  
 
             </div>);    
         } 
