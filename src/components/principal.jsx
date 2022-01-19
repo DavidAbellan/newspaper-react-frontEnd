@@ -4,8 +4,12 @@ import Article from './article';
 import Column from './column';
 import Header from './header';
 import CategorySelect from './categorySelect';
+import Footer from './footer';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import SearchBox from './searchGrid'; 
 
 const url = "http://localhost:3000/";
+
 class Principal extends React.Component {
     constructor(props){
         super(props);
@@ -14,42 +18,73 @@ class Principal extends React.Component {
             articles : [],
             authors :[],
             columns :[],
-            categories : []
+            categories : [],
+            call :0,
+            hasMore: true,
+            searchResults : []
+
+           
 
         }
-       
-        }
-    componentDidMount (){
         this.get_news();
 
-    }    
+        }
+    
     async get_news () {
-      let content = await axios.get(url);
+      let content 
+      if (this.state.call !== 0){
+        content = await axios.get(url+"&page="+ this.state.call);
+      }  else {
+        content = await axios.get(url);  
+      }
+      if (this.state.articles.length === 0){
       this.setState({
           timer : content.data.timer,
           articles : content.data.articles,
           authors : content.data.authors,
           columns : content.data.columns,
           categories : content.data.categories
-      });
-      console.log("principal", this.state)
-    
-
+      });} else {
+        this.setState({
+          articles: [...this.state.articles,...content.data.articles],
+          columns: [...this.state.columns,...content.data.columns],
+        })
+      }
+      this.setState({call : Number(this.state.call) + 10 })
+      if (this.state.articles.length < 10){
+        this.setState({
+          hasMore : false
+        })
+      }
     }    
-     
-
-    render(){
+   render(){
         if (this.state.articles ==null) {
-            return (<h1>Cargando</h1>);
-        } else {
+            return (<h1>Loading...</h1>);
+        } else  {
             return  (
             <div className="front">
+                  <InfiniteScroll
+                dataLength={this.state.articles.length} 
+                next={()=> this.get_news()}
+                hasMore={this.state.hasMore}
+                loader={<p>The End¿?</p>}
+                endMessage={
+                  <p style={{textAlign: 'center'}}>
+                    <b>Yay! You have seen it all</b>
+                  </p>
+                }
+              >
                 <CategorySelect {...this.state.categories} ></CategorySelect>
+                <SearchBox></SearchBox>
                 <Header {...this.state.timer}></Header>
                 <div className="content">
-                  {this.state.articles.map(a =><div className="article "><Article {...a}></Article></div>)}
-                  {this.state.columns.map(c =><div className="column"><Column {...c}></Column></div> )}
-                </div>  
+                     {this.state.articles.map((a,k) =><div className="article" ><Article key={k} {...a}></Article></div>)}
+                </div> 
+                 <div className="columnFormat">  
+                     {this.state.columns.map((c,k) =><div className="column"><Column key={k} {...c}></Column></div> )}
+                </div> 
+                  </InfiniteScroll> 
+                  <Footer></Footer>  
 
             </div>);    
         } 

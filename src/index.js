@@ -4,6 +4,14 @@ import './style.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+
+/*
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'; // Archivo CSS de Bootstrap 4 
+import '../node_modules/bootstrap/dist/js/bootstrap.min.js'; // Archivo Javascript de Bootstrap 4 
+
+*/
+
 ReactDOM.render( <App />,document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
