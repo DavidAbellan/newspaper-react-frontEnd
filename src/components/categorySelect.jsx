@@ -3,9 +3,9 @@ function CategorySelect (props) {
     
        return(
        <div>
-       <select className="categorySelect">
-           <option disabled selected>Categorías</option>
-           {format.map(a => <option value= {a.name}>{a.name}</option>)}
+       <select  defaultValue={"Categorías"} className="categorySelect">
+           <option >Categorías</option>
+           {format.map((a,k) => <option key={k} value= {a.name}>{a.name}</option>)}
        </select>
        </div>)
     ;

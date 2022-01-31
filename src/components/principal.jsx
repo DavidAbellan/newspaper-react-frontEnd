@@ -63,30 +63,30 @@ class Principal extends React.Component {
         } else  {
             return  (
             <div className="front">
+                <CategorySelect {...this.state.categories} ></CategorySelect>
+                <SearchBox></SearchBox>
+                <Header {...this.state.timer}></Header>
                   <InfiniteScroll
-                dataLength={this.state.articles.length} 
+                dataLength={this.state.articles.length + this.state.columns.length} 
                 next={()=> this.get_news()}
                 hasMore={this.state.hasMore}
-                loader={<p>The End¿?</p>}
+                loader={<p>    The End¿?</p>}
                 endMessage={
                   <p style={{textAlign: 'center'}}>
                     <b>Yay! You have seen it all</b>
                   </p>
                 }
               >
-                <CategorySelect {...this.state.categories} ></CategorySelect>
-                <SearchBox></SearchBox>
-                <Header {...this.state.timer}></Header>
                 <div className="content">
-                     {this.state.articles.map((a,k) =><div className="article" ><Article key={k} {...a}></Article></div>)}
+                     {this.state.articles.map((a,k) =><div key={k} className="article" ><Article  {...a}></Article></div>)}
                 </div> 
                  <div className="columnFormat">  
-                     {this.state.columns.map((c,k) =><div className="column"><Column key={k} {...c}></Column></div> )}
+                     {this.state.columns.map((c,k) =><div  key={k} className="column"><Column {...c}></Column></div> )}
                 </div> 
                   </InfiniteScroll> 
                   <Footer></Footer>  
-
             </div>);    
+
         } 
     }   
     }

@@ -1,100 +1,94 @@
 import React from "react";
 import Category from "./articleCategoryButton";
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-  
-class article extends React.Component{
-         constructor(props) {
-             super(props);
-             this.state = {
-                 categories : [],
-                 outstanding : false,
-                 title:"",
-                 author :"",
-                 photo:"",
-                 created:"",
-                 id:""             }
-         }
-         componentDidMount(){
-             this.setState (
-                 {
-                     outstanding : this.props.outstanding,
-                     title: this.props.title,
-                     author : this.props.author,
-                     photo : this.props.photo,
-                     created : this.props.created,
-                     id : this.props.id,
-                     categories : this.props.categories,
+/*me parece que va a tener que convertirse en una funcion 
+para poder user el get params en el detalle*/
 
-                 }
-             );
-             
-         }
+function article(props) {
+  let outstanding = props.outstanding;
+  let title = props.title;
+  let author = props.author;
+  let photo = props.photo;
+  let created = props.created;
+  let id = props.id;
+  let categories = props.categories;
 
 
-       render(){
-                if(this.state.outstanding) {
-                  if (this.state.title.length < 20) {
-                   return (
-                                <div className="outstandingNew">
-                                <h2>{this.state.title}</h2>
-                                <img src ={"http://localhost:3000/images/"+this.state.photo.filename}  alt={this.state.title}/>
-                                <div className="subhead">{"@"+this.state.author+ "  " + this.state.created + "  || "}
-                                <Category {...this.state.categories}></Category>
-                                </div>
-                                </div>
-                           ); 
-                  } else {
-                    return (
-                      <div className="outstandingNewMoreThan20">
-                      <h2 >{this.state.title}</h2>
-                      <div className="card-image small">
-                      <img src ={"http://localhost:3000/images/"+this.state.photo.filename}  alt={this.state.title}/>
-                      </div>
-                      <div className="subhead">{"@"+this.state.author+ "  " + this.state.created + "  || "}
-                      <Category {...this.state.categories}></Category>
-                      </div>
-                      </div>
-                      );   
-                  }  
-        
-                } else {
-                    if (this.state.photo.size < 100000) {
-                    
-                   return (
-                    <div className="card mb-3" style={{width: '945px', margin:'2em'}}>
-                      <div className="row no-gutters">
-                        <div className="newColumns">
-                          <img className="new-image" alt = {this.state.title}src = {"http://localhost:3000/images/"+ this.state.photo.filename}/>
-                          <div className="titleNew">
-                            <h1 >{this.state.title}</h1>
-                            
-                          </div>
-                      </div>
-                        <div className="col-md-8">
-                        </div>
-                    </div>
-                    </div>
-                  );
-                   } else {
-                    return (
-                      <div className="card mb-3" style={{width: '945px', margin:'2em'}}>
-                        <div className="row no-gutters">
-                          <div className="newColumns">
-                            <img className="new-image" alt = {this.state.title}src = {"http://localhost:3000/images/"+ this.state.photo.filename}/>
-                            <div className="titleNew">
-                              <h1 className="bigImageNewh1" >{this.state.title}</h1>
-                              
-                            </div>
-                        </div>
-                          <div className="col-md-8">
-                          </div>
-                      </div>
-                      </div>);
 
-                   }
 
-                }
-            }}
-    
+
+  if (outstanding) {
+    if (title.length < 20) {
+      let path = '/art/' + id;
+      return (
+        <div className="outstandingNew">
+          <Link to={{
+            pathname : path,
+            query : {id}
+          }}>
+            see more
+          </Link>
+
+          <h2>{title}</h2>
+          <img src={"http://localhost:3000/images/" + photo.filename} alt={title} />
+          <div className="subhead">{"@" + author + "  " + created + "  || "}
+            <Category {...categories}></Category>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="outstandingNewMoreThan20">
+          <h2 >{title}</h2>
+          <div className="card-image small">
+            <img src={"http://localhost:3000/images/" + photo.filename} alt={title} />
+          </div>
+          <div className="subhead">{"@" + author + "  " + created + "  || "}
+            <Category {...categories}></Category>
+          </div>
+        </div>
+      );
+    }
+
+  } else {
+    if (photo.size < 100000) {
+
+      return (
+        <div className="card mb-3" style={{ width: '945px', margin: '2em' }}>
+          <div className="row no-gutters">
+            <div className="newColumns">
+              <img className="new-image" alt={title} src={"http://localhost:3000/images/" + photo.filename} />
+              <div className="titleNew">
+                <h1 >{title}</h1>
+
+              </div>
+            </div>
+            <div className="col-md-8">
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="card mb-3" style={{ width: '945px', margin: '2em' }}>
+          <div className="row no-gutters">
+            <div className="newColumns">
+              <img className="new-image" alt={title} src={"http://localhost:3000/images/" + photo.filename} />
+              <div className="titleNew">
+                <h1 className="bigImageNewh1" >{title}</h1>
+
+              </div>
+            </div>
+            <div className="col-md-8">
+            </div>
+          </div>
+        </div>);
+
+    }
+
+  }
+}
+
 
 export default article;

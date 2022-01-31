@@ -9,7 +9,7 @@ import {Row,Col,  Container, Button } from "react-bootstrap";
         super(props);
         this.state={
             result :[],
-            name : ""
+            name : ""     
         }
     
     this.get_results = this.get_results.bind(this);
@@ -20,13 +20,12 @@ import {Row,Col,  Container, Button } from "react-bootstrap";
         this.setState({
             name : event.target.value
         });
-        let content = await axios.get(url+"search/"+this.state.name);       
+        let content = await axios.get(url+"search/"+this.state.name);  
+        
         this.setState({
             result : content
           })
-          
-
-     
+       
     }
     render(){
        
@@ -58,29 +57,12 @@ import {Row,Col,  Container, Button } from "react-bootstrap";
            newProps.push(arrayProps[i]);
 
        }
-       
-      console.log("NEWPROPS",newProps)
+       console.log("NEWPROS", newProps);
       return (
-          <div>
-        {newProps.map((a,k) =><Row ><Col xs={12} md={8} key={k}>{a.title}</Col> </Row>)}
+          <div className="floatDiv">
+        {newProps.map((a,k) =><div key={k} ><Row ><Col xs={12} md={8}><p className="searchText">{a.title}</p></Col></Row></div>)}
         </div>
-       /* <Modal {...newProps} aria-labelledby="contained-modal-title-vcenter">
-        <Modal.Header closeButton>
-           <Modal.Title id="contained-modal-title-vcenter">
-              Resultados de la búsqueda 
-           </Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="show-grid">
-            <Container>
-       
-            </Container>
-
-        </Modal.Body>
-        <Modal.Footer>
-            <Button onClick={newProps.onHide}>Cerrar</Button>
-        </Modal.Footer>
-    </Modal> */
-
+    
       )
   }  
 

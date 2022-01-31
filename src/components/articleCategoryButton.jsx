@@ -2,7 +2,7 @@ function article_category_button (props) {
         let array = Object.values(props);
         return (
             <div>
-            {array.map(e => <button className="articleCategoryButton" >{e}</button>)}
+            {array.map((e,k) => <button key={k} className="articleCategoryButton" >{e}</button>)}
             </div>
         );
 }

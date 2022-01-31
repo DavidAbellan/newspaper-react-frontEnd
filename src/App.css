@@ -27,6 +27,14 @@
   vertical-align: baseline;
   white-space: nowrap;
 }
+.floatDiv {
+  position: fixed;
+  z-index: 1000;
+  min-height:80px;
+  width: 252px;
+  text-align: center;
+  background-color: black;
+}
 
 .articleCategoryButton:hover {
   box-shadow: rgba(0, 1, 0, .2) 0 2px 8px;
@@ -71,6 +79,9 @@
   text-align: center;
 
 } 
+.searchText {
+  color:white;
+}
 
 @media (max-width: 420px) {
   .articleCategoryButton {
