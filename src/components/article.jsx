@@ -2,8 +2,6 @@ import React from "react";
 import Category from "./articleCategoryButton";
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-/*me parece que va a tener que convertirse en una funcion 
-para poder user el get params en el detalle*/
 
 function article(props) {
   let outstanding = props.outstanding;
@@ -14,18 +12,14 @@ function article(props) {
   let id = props.id;
   let categories = props.categories;
 
-
-
-
-
   if (outstanding) {
     if (title.length < 20) {
       let path = '/art/' + id;
       return (
         <div className="outstandingNew">
           <Link to={{
-            pathname : path,
-            query : {id}
+            pathname: path,
+            query: { id }
           }}>
             see more
           </Link>

@@ -79,6 +79,17 @@
   text-align: center;
 
 } 
+.articleDetailPhoto{
+    text-align: center;
+}
+.articleDetailimage {
+  width: 90vw;
+}
+.detailHeaderEMT{
+  font-size: 90px;
+
+}
+
 .searchText {
   color:white;
 }
@@ -134,7 +145,12 @@
   font-size: 30px;
 }
 
-
+.detailHeader{
+  background-color: black;
+}
+.detailHeader h1 {
+  color: #fff;
+}
 
 
 .outstanding {
