@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import HeaderS from "../components/detailHeader";
 import Category from "./articleCategoryButtonInDetails";
+import Footer from "../components/footer";
 class Detail extends React.Component {
     constructor(props) {
         super(props);
@@ -18,6 +19,7 @@ class Detail extends React.Component {
             firstHalf: "",
             secondHalf: "",
             secondPhoto: "",
+            authorPhoto:""
         }
         this.url = "http://localhost:3000/art/";
         this.id = window.location.href.substring(26, window.location.href.length);
@@ -51,13 +53,12 @@ class Detail extends React.Component {
             time: content.data.time,
             posts: content.data.posts,
             photos: content.data.photos,
-            principalPhoto: content.data.photos[0].filename
+            principalPhoto: content.data.photos[0].filename,
+            authorPhoto : content.data.authorPhoto.filename
         })
         if (this.state.photos.length > 1) {
             this.moreThanAPicture();
         }
-
-
     }
     render() {
         if (this.state.content == null) {
@@ -66,17 +67,20 @@ class Detail extends React.Component {
                     <h1>cargando...</h1>
                 </div>
             );
-        } else {
+        } else if (this.state.morePhotos) {
             return (
                 <div>
                     <HeaderS></HeaderS>
+                    <h1 className="detailTitle">
+                        {this.state.article.title}
+                    </h1>
                     <div className="articleDetailPhoto">
                         <img alt={this.state.article.title} className="articleDetailimage" src={"http://localhost:3000/images/" + this.state.principalPhoto}></img>
                     </div>
                     <div className="subhead">{"por " + this.state.author.name + "  " + this.state.time + "  || "}
                         {this.state.categories.map((a, k) => <Category key={k} {...a}></Category>)}
                     </div>
-                    <div>
+                    <div className="textBlock">
                         <p>
                             {this.state.firstHalf}
                         </p>
@@ -86,13 +90,49 @@ class Detail extends React.Component {
                             <img alt={this.state.article.title} className="articleDetailimage" src={"http://localhost:3000/images/" + this.state.secondPhoto}></img>
                         </div>
                     </div>
-                    <div>
+                    <div className="textBlock">
                         <p>
                             {this.state.secondHalf}
                         </p>
                     </div>
+                    <div className="articleBottom">
+                            <img alt={this.state.article.title} src={"http://localhost:3000/images/profiles/" + this.state.authorPhoto}></img>
+ 
+                            <p>{ this.state.author.name}</p>
+                            <p>{ this.state.author.description}</p>
+                    </div>
+                    <Footer></Footer>
                 </div>
             );
+        } else {
+            return (
+                <div>
+                    <HeaderS></HeaderS>
+                    <h1 className="detailTitle">
+                        {this.state.article.title}
+                    </h1>
+                    <div className="articleDetailPhoto">
+                        <img alt={this.state.article.title} className="articleDetailimage" src={"http://localhost:3000/images/" + this.state.principalPhoto}></img>
+                    </div>
+                    <div className="subhead">{"por " + this.state.author.name + "  " + this.state.time + "  || "}
+                        {this.state.categories.map((a, k) => <Category key={k} {...a}></Category>)}
+                    </div>
+                    <div className="textBlock">
+                        <p>
+                            {this.state.article.main_text}
+                        </p>
+                    </div>
+                    <div className="articleBottom">
+                            <img alt={this.state.article.title} src={"http://localhost:3000/images/profiles/" + this.state.authorPhoto}></img>
+ 
+                            <p>{ this.state.author.name}</p>
+                            <p>{ this.state.author.description}</p>
+                    </div>
+                    <Footer></Footer>
+
+                </div>
+            );
+
 
 
         }
