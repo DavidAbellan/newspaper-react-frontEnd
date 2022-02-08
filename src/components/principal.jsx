@@ -15,6 +15,7 @@ class Principal extends React.Component {
     super(props);
     this.state = {
       timer: "",
+      pages: [],
       articles: [],
       authors: [],
       columns: [],
@@ -22,44 +23,39 @@ class Principal extends React.Component {
       call: 0,
       hasMore: true,
       searchResults: []
-
-
-
     }
-    this.get_news();
 
+    this.get_news();
   }
 
   async get_news() {
-    let content
-    if (this.state.call !== 0) {
-      content = await axios.get(url + "&page=" + this.state.call);
-    } else {
-      content = await axios.get(url);
-    }
-    if (this.state.articles.length === 0) {
-      this.setState({
-        timer: content.data.timer,
-        articles: content.data.articles,
-        authors: content.data.authors,
-        columns: content.data.columns,
-        categories: content.data.categories
-      });
-    } else {
-      this.setState({
-        articles: [...this.state.articles, ...content.data.articles],
-        columns: [...this.state.columns, ...content.data.columns],
-      })
-    }
+    const content =
+      this.state.pages.length === 0
+        ? await axios.get(url)
+        : await axios.get(`${url}&page=${this.state.call}`)
+
+    this.state.pages.push({
+      articles: content.data.articles,
+      columns: content.data.columns
+    })
+            
+    this.setState({
+      timer: content.data.timer,
+      authors: content.data.authors,
+      categories: content.data.categories
+    });     
+
     this.setState({ call: Number(this.state.call) + 10 })
-    if (this.state.articles.length < 10) {
+
+    if (this.state.pages[this.state.pages.length - 1].articles.length < 10) {
       this.setState({
         hasMore: false
       })
     }
   }
+  
   render() {
-    if (this.state.articles == null) {
+    if (this.state.pages.length ===0) {
       return (<h1>Loading...</h1>);
     } else {
       return (
@@ -68,26 +64,27 @@ class Principal extends React.Component {
           <SearchBox></SearchBox>
           <Header {...this.state.timer}></Header>
           <InfiniteScroll
-            dataLength={this.state.articles.length + this.state.columns.length}
+            dataLength={this.state.pages.length}
             next={() => this.get_news()}
             hasMore={this.state.hasMore}
             loader={<p>    The End¿?</p>}
             endMessage={
               <p style={{ textAlign: 'center' }}>
                 <b>Yay! You have seen it all</b>
-              </p>
+              </p> }>
+            <div>
+            {
+              this.state.pages.map((page, k) =>{ 
+                return( <div key={k} className='content'>
+                  { page.articles.map((a, k) => <div key={k} className="article" ><Article  {...a}></Article></div>) }
+                  { page.columns.map((c, k) => <div key={k} className="column" ><Column  {...c}></Column></div>) }                
+                </div>);
+              })
             }
-          >
-            <div className="content">
-              {this.state.articles.map((a, k) => <div key={k} className="article" ><Article  {...a}></Article></div>)}
-            </div>
-            <div className="columnFormat">
-              {this.state.columns.map((c, k) => <div key={k} className="column"><Column {...c}></Column></div>)}
             </div>
           </InfiniteScroll>
           <Footer></Footer>
         </div>);
-
     }
   }
 }

@@ -28,7 +28,7 @@
   white-space: nowrap;
 }
 .floatDiv {
-  position: fixed;
+  position: absolute;
   z-index: 1000;
   min-height:80px;
   width: 252px;

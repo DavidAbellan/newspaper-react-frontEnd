@@ -11,21 +11,21 @@ function article(props) {
   let created = props.created;
   let id = props.id;
   let categories = props.categories;
+  let path = '/art/' + id;
 
   if (outstanding) {
     if (title.length < 20) {
-      let path = '/art/' + id;
       return (
         <div className="outstandingNew">
           <Link to={{
             pathname: path,
             query: { id }
           }}>
-            see more
+
+            <h2>{title}</h2>
+            <img src={"http://localhost:3000/images/" + photo.filename} alt={title} />
           </Link>
 
-          <h2>{title}</h2>
-          <img src={"http://localhost:3000/images/" + photo.filename} alt={title} />
           <div className="subhead">{"@" + author + "  " + created + "  || "}
             <Category {...categories}></Category>
           </div>
@@ -34,10 +34,15 @@ function article(props) {
     } else {
       return (
         <div className="outstandingNewMoreThan20">
-          <h2 >{title}</h2>
-          <div className="card-image small">
-            <img src={"http://localhost:3000/images/" + photo.filename} alt={title} />
-          </div>
+          <Link to={{
+            pathname: path,
+            query: { id }
+          }}>
+            <h2 >{title}</h2>
+            <div className="card-image small">
+              <img src={"http://localhost:3000/images/" + photo.filename} alt={title} />
+            </div>
+          </Link>
           <div className="subhead">{"@" + author + "  " + created + "  || "}
             <Category {...categories}></Category>
           </div>
@@ -53,9 +58,14 @@ function article(props) {
           <div className="row no-gutters">
             <div className="newColumns">
               <img className="new-image" alt={title} src={"http://localhost:3000/images/" + photo.filename} />
-              <div className="titleNew">
-                <h1 >{title}</h1>
 
+              <div className="titleNew">
+                <Link to={{
+                  pathname: path,
+                  query: { id }
+                }}>
+                  <h1 >{title}</h1>
+                </Link>
               </div>
             </div>
             <div className="col-md-8">
@@ -70,7 +80,12 @@ function article(props) {
             <div className="newColumns">
               <img className="new-image" alt={title} src={"http://localhost:3000/images/" + photo.filename} />
               <div className="titleNew">
-                <h1 className="bigImageNewh1" >{title}</h1>
+                <Link to={{
+                  pathname: path,
+                  query: { id }
+                }}>
+                  <h1 className="bigImageNewh1" >{title}</h1>
+                </Link>
 
               </div>
             </div>
