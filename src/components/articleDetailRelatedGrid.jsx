@@ -8,7 +8,7 @@ function grid(props) {
         <div>
         <h2>Relacionados</h2>
         <CardGroup>
-            {arrArt.map(a => <Card{...a}></Card>)}
+            {arrArt.map((a ,k) => <Card{...a}  key ={k} ></Card>)}
         </CardGroup>
         </div>
     );

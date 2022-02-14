@@ -1,8 +1,7 @@
 import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function CardOfGrid(props) {
-    console.log("prop",props);
     let path
     let id = props.id
     if (!props.highlights ) {
@@ -17,7 +16,7 @@ function CardOfGrid(props) {
     return (
         <Card>
             <Card.Body>
-            <Link to={{
+            <Link onClick={()=>props.history.push(id)}  to={{
             pathname: path,
             query: { id }
           }}>
