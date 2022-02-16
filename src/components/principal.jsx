@@ -70,14 +70,16 @@ class Principal extends React.Component {
             loader={<p>    The End¿?</p>}
             endMessage={
               <p style={{ textAlign: 'center' }}>
-                <b>Yay! You have seen it all</b>
+                <img src="theEnd.gif" alt='There is no more!' />
               </p> }>
             <div>
             {
               this.state.pages.map((page, k) =>{ 
                 return( <div key={k} className='content'>
                   { page.articles.map((a, k) => <div key={k} className="article" ><Article  {...a}></Article></div>) }
-                  { page.columns.map((c, k) => <div key={k} className="column" ><Column  {...c}></Column></div>) }                
+                  <div className='columnContainer'>
+                  { page.columns.map((c, k) => <div key={k} className="column" ><Column   {...c}></Column></div>) }
+                  </div>                
                 </div>);
               })
             }

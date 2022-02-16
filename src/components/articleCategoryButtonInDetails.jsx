@@ -1,12 +1,20 @@
-function article_category_button_detail (props) {
-    //por aqui paso un array [nombre,id]
-    //hay que hacer un link con el id
-    let name = props[0]
+import {useNavigate} from 'react-router-dom';
+
+function Article_category_button_detail (props) {
+    let name = props[0];
+    let id = props[1];
+    let navigate = useNavigate();
+    function handleChange(value){
+        navigate(`/cat/${value}`);
+    }
+
     return (
         <div>
-         <button  className="articleCategoryButton" >{name}</button>
+         <button onClick={event => {
+                return( handleChange(event.target.value));}} 
+                value={id} className="articleCategoryButton" >{name}</button>
         </div>
     );
 }
 
-export default article_category_button_detail;
+export default Article_category_button_detail;

@@ -8,10 +8,11 @@ function article(props) {
   let title = props.title;
   let author = props.author;
   let photo = props.photo;
-  let created = props.created;
+  let created = props.created
   let id = props.id;
   let categories = props.categories;
   let path = '/art/' + id;
+  
 
   if (outstanding) {
     if (title.length < 20) {
@@ -23,12 +24,14 @@ function article(props) {
           }}>
 
             <h2>{title}</h2>
-            <img src={"http://localhost:3000/images/" + photo.filename} alt={title} />
+            <img src={"http://localhost:3000/images/" + photo.filename} alt={title} className="photoPrincipalOutstanding" />
           </Link>
 
-          <div className="subhead">{"@" + author + "  " + created + "  || "}
+          <div className="subhead">{"@" + author + " || " + created + "  || "}
             <Category {...categories}></Category>
           </div>
+          <br></br>
+
         </div>
       );
     } else {
@@ -40,12 +43,13 @@ function article(props) {
           }}>
             <h2 >{title}</h2>
             <div className="card-image small">
-              <img src={"http://localhost:3000/images/" + photo.filename} alt={title} />
+              <img src={"http://localhost:3000/images/" + photo.filename} alt={title} className="photoPrincipalOutstanding" />
             </div>
           </Link>
-          <div className="subhead">{"@" + author + "  " + created + "  || "}
+          <div className="subhead">{"@" + author + " || " + created + "  || "}
             <Category {...categories}></Category>
           </div>
+          <br></br>
         </div>
       );
     }
@@ -60,17 +64,19 @@ function article(props) {
               <img className="new-image" alt={title} src={"http://localhost:3000/images/" + photo.filename} />
 
               <div className="titleNew">
-                <Link to={{
+                <Link className="titleNotOutstanding" to={{
                   pathname: path,
                   query: { id }
                 }}>
-                  <h1 >{title}</h1>
+                  <h1 className="titleNotOutstanding" >{title}</h1>
                 </Link>
               </div>
             </div>
             <div className="col-md-8">
             </div>
           </div>
+          <br></br>
+
         </div>
       );
     } else {
@@ -80,7 +86,7 @@ function article(props) {
             <div className="newColumns">
               <img className="new-image" alt={title} src={"http://localhost:3000/images/" + photo.filename} />
               <div className="titleNew">
-                <Link to={{
+                <Link className="titleNotOutstanding" to={{
                   pathname: path,
                   query: { id }
                 }}>
@@ -92,12 +98,16 @@ function article(props) {
             <div className="col-md-8">
             </div>
           </div>
+          <br></br>
+
+          
         </div>);
 
     }
 
   }
 }
+
 
 
 export default article;

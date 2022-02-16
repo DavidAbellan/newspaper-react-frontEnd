@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&family=Neucha&family=Roboto+Slab&family=Rock+Salt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap');
 .articleCategoryButton{
   align-items: center;
   background-color: initial;
@@ -146,6 +148,20 @@
 
 .bigImageNewh1{
   font-size: 30px;
+  
+}
+.detailTitle h1{
+  align-self: center;
+  font-size: 120px;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-bottom: 1em;
+  width: 75vw;
+  text-align: center;
+}
+.detailTitle{
+  display: flex;
+  align-items: center;
 }
 
 .detailHeader{
@@ -204,7 +220,9 @@
     color: white;
     border :#282c34;
   }
-
+.detailHeaderLink{
+  text-decoration: none;
+}
 
 .normalNew {
     display: flex;
@@ -226,10 +244,13 @@
     display: flex;
     flex-direction:row;
     text-align: center;
-    margin-top: 1em;
-    align-self: center;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    align-self: flex-start;
     max-width: 100%;
+    min-height: 80px;
     margin-right:14.5em;
+    margin-left: 2em;
   } 
 .column img {
     display: block;
@@ -242,11 +263,37 @@
 .column h2 {
     align-self: center;
     margin-left: 1em;
-    font-size: 1.8em;
-    font-family: 'Rock Salt',cursive;
+    font-size: 3em;
+    font-style: italic;
+    font-weight: 50;
   }
-
-
+.columnAuthor{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}  
+.columnTitle{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1em;
+}
+.columnTitle h1{
+  font-size: 100px;
+}
+.titleNotOutstanding {
+  color: black;
+  text-decoration: none;
+}
+.columnDetailBody{
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  width:75%;
+}
+.columnDetailBody p{
+  text-align: center;
+}
 
  
 
@@ -288,6 +335,10 @@ header{
 p{
     margin-top: 0;
     margin-bottom: 20px;
+    line-height: 40px;
+    font-weight: 100;
+    font-size: 18px;
+    font-family: 'Zen Kaku Gothic Antique regular', sans-serif;
 }
 .head{
     text-align: center;
@@ -302,7 +353,24 @@ p{
   padding: 12px 0 12px 0;
 
 }
+.photoFootAuthor{
+  max-width: 100px;
+  max-height: 150px;
+  height: auto;
+}
 
+.articleBottomText{
+  margin-left: 1em;
+}
+.articleBottomText p {
+  font-size: 12px;
+}
+.photoPrincipalOutstanding{
+  max-width: 90vw;
+  height: auto;
+
+
+}
 
 .subhead{
     margin-top: 1em;

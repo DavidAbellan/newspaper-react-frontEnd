@@ -108,9 +108,12 @@ class Detail extends React.Component {
             return (
                 <div>
                     <HeaderS></HeaderS>
-                    <h1 className="detailTitle">
+                    <div className="detailTitle">
+                    <h1 >
+                    
                         {this.state.article.title}
                     </h1>
+                    </div>
                     <div className="articleDetailPhoto">
                         <img alt={this.state.article.title} className="articleDetailimage" src={"http://localhost:3000/images/" + this.state.principalPhoto}></img>
                     </div>
@@ -133,9 +136,12 @@ class Detail extends React.Component {
                         </p>
                     </div>
                     <div className="articleBottom">
-                        <img alt={this.state.article.title} src={"http://localhost:3000/images/profiles/" + this.state.authorPhoto}></img>
-                        <p>{this.state.author.name}</p>
+                        <img alt={this.state.article.title} src={"http://localhost:3000/images/profiles/" + this.state.authorPhoto} className="photoFootAuthor"></img>
+                        <div className="articleBottomText">
+
+                        <h1>{this.state.author.name}</h1>
                         <p>{this.state.author.description}</p>
+                        </div>
                     </div>
                     <div>
                     <Grid {...this.state.posts}></Grid>
@@ -148,9 +154,11 @@ class Detail extends React.Component {
                 return (
                     <div>
                         <HeaderS></HeaderS>
-                        <h1 className="detailTitle">
+                        <div  className="detailTitle">
+                        <h1>
                             {this.state.article.title}
                         </h1>
+                        </div>
                         <div className="articleDetailPhoto">
                             <img alt={this.state.article.title} className="articleDetailimage" src={"http://localhost:3000/images/" + this.state.principalPhoto}></img>
                         </div>
@@ -173,9 +181,12 @@ class Detail extends React.Component {
                             </p>
                         </div>
                         <div className="articleBottom">
-                            <img alt={this.state.article.title} src={"http://localhost:3000/images/profiles/" + this.state.authorPhoto}></img>
-                            <p>{this.state.author.name}</p>
+                            <img alt={this.state.article.title} src={"http://localhost:3000/images/profiles/" + this.state.authorPhoto}  className="photoFootAuthor"></img>
+                            <div className="articleBottomText">
+
+                            <h1>{this.state.author.name}</h1>
                             <p>{this.state.author.description}</p>
+                            </div>
                         </div>
                         <div>
                          <h2>No existen artículos relacionados</h2>
@@ -190,9 +201,11 @@ class Detail extends React.Component {
 
                 <div>
                     <HeaderS></HeaderS>
-                    <h1 className="detailTitle">
+                    <div  className="detailTitle">
+                    <h1 >
                         {this.state.article.title}
                     </h1>
+                    </div>
                     <div className="articleDetailPhoto">
                         <img alt={this.state.article.title} className="articleDetailimage" src={"http://localhost:3000/images/" + this.state.principalPhoto}></img>
                     </div>
@@ -205,9 +218,12 @@ class Detail extends React.Component {
                         </p>
                     </div>
                     <div className="articleBottom">
-                        <img alt={this.state.article.title} src={"http://localhost:3000/images/profiles/" + this.state.authorPhoto}></img>
-                        <p>{this.state.author.name}</p>
+                        <img alt={this.state.article.title} src={"http://localhost:3000/images/profiles/" + this.state.authorPhoto}  className="photoFootAuthor"></img>
+                        <div className="articleBottomText">
+
+                        <h1>{this.state.author.name}</h1>
                         <p>{this.state.author.description}</p>
+                        </div>
                     </div>
                     <div>
                     <Grid {...this.state.posts}></Grid>
@@ -221,9 +237,11 @@ class Detail extends React.Component {
 
                     <div>
                         <HeaderS></HeaderS>
-                        <h1 className="detailTitle">
+                        <div  className="detailTitle">
+                        <h1>
                             {this.state.article.title}
                         </h1>
+                        </div>
                         <div className="articleDetailPhoto">
                             <img alt={this.state.article.title} className="articleDetailimage" src={"http://localhost:3000/images/" + this.state.principalPhoto}></img>
                         </div>
@@ -236,9 +254,11 @@ class Detail extends React.Component {
                             </p>
                         </div>
                         <div className="articleBottom">
-                            <img alt={this.state.article.title} src={"http://localhost:3000/images/profiles/" + this.state.authorPhoto}></img>
-                            <p>{this.state.author.name}</p>
-                            <p>{this.state.author.description}</p>
+                            <img alt={this.state.article.title} src={"http://localhost:3000/images/profiles/" + this.state.authorPhoto}  className="photoFootAuthor"></img>
+                            <div className="articleBottomText">
+                              <p>{this.state.author.name}</p>
+                              <p>{this.state.author.description}</p>
+                            </div>  
                         </div>
                         <div>
                            <h2>No hay relacionados</h2>

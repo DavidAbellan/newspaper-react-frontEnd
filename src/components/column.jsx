@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
              return (
                 <div className="column">
                 <img src ={"http://localhost:3000/images/profiles/"+props.picture.filename}  alt={props.title}/>
-                <Link to={{
+                <Link className="titleNotOutstanding" to={{
                     pathname : "/col/" + id
                     }}>
                 <h2>{props.title}</h2>

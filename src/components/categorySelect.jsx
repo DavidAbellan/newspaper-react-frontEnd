@@ -8,8 +8,8 @@ function CategorySelect(props) {
     return (
         <div>
             <select onChange={event => {
-                return(
-                handleChange(event.target.value));}}  defaultValue={"Categorías"}  className="categorySelect">
+                return( handleChange(event.target.value));}}  
+                defaultValue={"Categorías"}  className="categorySelect">
                 <option >Categorías</option>
                 {format.map((a, k) => {
                     let id = a.id;

@@ -2,7 +2,11 @@ import { Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 function CardOfGrid(props) {
-    let path
+    const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    const dias_semana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    let path;
+    let fecha = new Date(props.updatedAt);
+    let date = String(dias_semana[fecha.getDay()] + ', ' + fecha.getDate() + ' de ' + meses[fecha.getMonth()] + ' de ' + fecha.getUTCFullYear());
     let id = props.id
     if (!props.highlights ) {
         path = '/art/' + id;
@@ -21,13 +25,13 @@ function CardOfGrid(props) {
             query: { id }
           }}>
                 <Card.Title>{props.title}</Card.Title>
+              </Link>
                 <Card.Text>
                     {text}
                 </Card.Text>
-              </Link>
             </Card.Body>
             <Card.Footer>
-                <small className="text-muted">{props.updatedAt}</small>
+                <small className="text-muted">{date}</small>
             </Card.Footer>
         </Card>
     );

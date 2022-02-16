@@ -9,7 +9,7 @@ function header(date) {
     });
     return (
         <div className="head">
-            <Link to={{
+            <Link className="titleNotOutstanding" to={{
                 pathname: '/'
             }}>
                 <div className="headerobjectswrapper">
