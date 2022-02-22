@@ -16,14 +16,19 @@ class ArticleInSectionGrid extends React.Component {
       updatedAt: props.updatedAt,
       photos: []
     }
-
     this.setPhotos(this.state.id);
   }
+  
 
   async setPhotos(id) {
+    const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    const dias_semana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    let fecha = new Date( this.state.createdAt)  
     let photos = await axios.get('http://localhost:3000/getpicture/' + id);
     this.setState({
-      photos: photos.data.photos
+      photos: photos.data.photos,
+      createdAt : String(dias_semana[fecha.getDay()] + ', ' + fecha.getDate() + ' de ' + meses[fecha.getMonth()] + ' de ' + fecha.getUTCFullYear())
+
     })
  }
  
@@ -42,16 +47,16 @@ class ArticleInSectionGrid extends React.Component {
           <Link to={{
             pathname: '/'
           }}>
-            <h3>volver al principal</h3>
+            <p>volver al principal</p>
           </Link>
-          <div className="outstandingNew">
+          <div className="outstandingNewCategories">
             <Link to={{
               pathname: path,
               query: { id }
             }}>
 
-              <h2>{this.state.title}</h2>
-              <img src={"http://localhost:3000/images/" + this.state.photos[0].filename} alt={this.state.title} />
+              <h2 className="categoriesTitle">{this.state.title}</h2>
+              <img src={"http://localhost:3000/images/" + this.state.photos[0].filename} alt={this.state.title} className="photoPrincipalOutstanding" />
             </Link>
 
             <div className="subhead">{this.state.createdAt + "  || "}

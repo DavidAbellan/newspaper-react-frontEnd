@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import { Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const url = "http://localhost:3000/";
 class Search extends React.Component {
@@ -47,7 +48,23 @@ function MyModalWithGrid(props) {
   }
   return (
     <div className="floatDiv">
-      {newProps.map((a, k) => <div key={k} ><Row ><Col xs={12} md={8}><p className="searchText">{a.title}</p></Col></Row></div>)}
+      {newProps.map((a, k) => 
+        {
+        let id = a.id;
+        let path;
+        if (a.highlights === undefined){
+           path = '/art/'+id;  }
+        else {
+           path = '/col/'+id;
+        }
+        return (<div key={k} ><Row ><Col xs={12} md={8}>
+          <Link to={{
+            pathname: path,
+            query: { id }
+          }}>
+        <p className="searchText">{a.title}</p>
+        </Link>
+        </Col></Row></div>);})}
     </div>
   )
 }

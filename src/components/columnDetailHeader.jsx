@@ -5,7 +5,7 @@ function Header () {
              <Link to={{
             pathname: "/"
           }}>
-            <h2>El Mundo Tolai presenta :</h2>
+            <h2 className='columnDetailHeaderTitle'>El Mundo Tolai presenta :</h2>
             </Link>
         </div>
     )

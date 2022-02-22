@@ -4,6 +4,8 @@ import HeaderS from "../components/detailHeader";
 import Category from "./articleCategoryButtonInDetails";
 import Footer from "../components/footer";
 import Grid from '../components/articleDetailRelatedGrid';
+import loadingGif from '../loading.gif'
+
 class Detail extends React.Component {
     constructor(props) {
         super(props);
@@ -21,7 +23,8 @@ class Detail extends React.Component {
             firstHalf: "",
             secondHalf: "",
             secondPhoto: "",
-            authorPhoto: ""
+            authorPhoto: "",
+            authors:[]
         }
         this.url = "http://localhost:3000/art/";
         this.id = window.location.href.substring(26, window.location.href.length);
@@ -77,6 +80,8 @@ class Detail extends React.Component {
 
     async getNew() {
         let content = await axios.get(this.url + this.id2);
+        let authors = await axios.get( "http://localhost:3000/col/");
+
         this.setState({
             content: content.data,
             id: content.data.article.id,
@@ -87,21 +92,22 @@ class Detail extends React.Component {
             posts: content.data.posts,
             photos: content.data.photos,
             principalPhoto: content.data.photos[0].filename,
-            authorPhoto: content.data.authorPhoto.filename
+            authorPhoto: content.data.authorPhoto.filename,
+            authors : authors.data.authors
         })
         if (this.state.photos.length > 1) {
             this.moreThanAPicture();
         }
+        
         this.bowdlerize();
+        
        
     }
    
     render() {
         if (this.state.content == null) {
             return (
-                <div>
-                    <h1>cargando...</h1>
-                </div>
+                <div><img src={loadingGif} alt='now loading' /></div>
             );
         } else if (this.state.morePhotos) {
             if (this.state.posts.length > 0){  
@@ -109,7 +115,7 @@ class Detail extends React.Component {
                 <div>
                     <HeaderS></HeaderS>
                     <div className="detailTitle">
-                    <h1 >
+                    <h1>
                     
                         {this.state.article.title}
                     </h1>
@@ -147,7 +153,7 @@ class Detail extends React.Component {
                     <Grid {...this.state.posts}></Grid>
 
                     </div>
-                    <Footer></Footer>
+                    <Footer {...this.state.authors}></Footer>
                 </div>
             );
             }else{
@@ -191,7 +197,7 @@ class Detail extends React.Component {
                         <div>
                          <h2>No existen artículos relacionados</h2>
                         </div>
-                        <Footer></Footer>
+                        <Footer {...this.state.authors}></Footer>
                     </div>);
 
             }
@@ -229,7 +235,7 @@ class Detail extends React.Component {
                     <Grid {...this.state.posts}></Grid>
 
                     </div>
-                    <Footer></Footer>
+                    <Footer {...this.state.authors}></Footer>
 
                 </div>
             );}else{
@@ -263,7 +269,7 @@ class Detail extends React.Component {
                         <div>
                            <h2>No hay relacionados</h2>
                         </div>
-                        <Footer></Footer>
+                        <Footer {...this.state.authors}></Footer>
     
                     </div>
                 );

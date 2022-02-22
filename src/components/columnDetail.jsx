@@ -11,7 +11,8 @@ class ColumnDetail extends React.Component {
             author: "",
             column: "",
             authorPhoto: "",
-            related: []
+            related: [],
+            authors: []
         };
         this.url = "http://localhost:3000/col/";
         this.id = window.location.href.substring(26, window.location.href.length);
@@ -62,7 +63,7 @@ class ColumnDetail extends React.Component {
                         <Grid {...this.state.related}></Grid>
                     </div>
                     <div>
-                        <Footer></Footer>
+                        <Footer {...this.state.authors}></Footer>
                     </div>
 
 
@@ -75,15 +76,17 @@ class ColumnDetail extends React.Component {
     async getCol() {
         let content = await axios.get(this.url + this.id2);
         let related = await axios.get(this.url + "allfrom/" + content.data.author.id);
+        let authors = await axios.get( "http://localhost:3000/col/");
 
-        /* hay que sacar el propio articulo de relacionados */
         this.setState({
             content: content.data,
             author: content.data.author,
             column: content.data.column,
             authorPhoto: content.data.authorPhoto,
-            related: related.data.colums
+            related: related.data.colums,
+            authors : authors.data.authors
         })
+
 
 
 

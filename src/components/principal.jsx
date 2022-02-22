@@ -7,6 +7,7 @@ import CategorySelect from './categorySelect';
 import Footer from './footer';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import SearchBox from './searchGrid';
+import loadingGif from '../loading.gif'
 
 const url = "http://localhost:3000/";
 
@@ -56,7 +57,7 @@ class Principal extends React.Component {
   
   render() {
     if (this.state.pages.length ===0) {
-      return (<h1>Loading...</h1>);
+      return (<div><img src={loadingGif} alt='now loading' /></div>);
     } else {
       return (
         <div className="front">
@@ -85,7 +86,7 @@ class Principal extends React.Component {
             }
             </div>
           </InfiniteScroll>
-          <Footer></Footer>
+          <Footer {...this.state.authors}></Footer>
         </div>);
     }
   }

@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import Article from "./articleCategoryInSectionGrid";
+import loadingGif from '../loading.gif';
+
 
 class PrincipalCategory extends React.Component{
     constructor(props) {
@@ -36,7 +38,7 @@ class PrincipalCategory extends React.Component{
     render(){
         if(this.state.content.length === 0){
         return(
-        <h1>Cargando...</h1>
+            <div><img src={loadingGif} alt='now loading' /></div>
         );
         } else {
             return (
