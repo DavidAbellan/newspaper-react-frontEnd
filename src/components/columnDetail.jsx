@@ -76,7 +76,7 @@ class ColumnDetail extends React.Component {
     async getCol() {
         let content = await axios.get(this.url + this.id2);
         let related = await axios.get(this.url + "allfrom/" + content.data.author.id);
-        let authors = await axios.get( "http://localhost:3000/col/");
+        let authors = await axios.get("http://localhost:3000/authors/get");
 
         this.setState({
             content: content.data,

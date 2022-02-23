@@ -80,7 +80,7 @@ class Detail extends React.Component {
 
     async getNew() {
         let content = await axios.get(this.url + this.id2);
-        let authors = await axios.get( "http://localhost:3000/col/");
+        let authors = await axios.get( "http://localhost:3000/authors/get");
 
         this.setState({
             content: content.data,
