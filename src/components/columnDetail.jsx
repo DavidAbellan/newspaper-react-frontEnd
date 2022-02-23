@@ -43,7 +43,7 @@ class ColumnDetail extends React.Component {
 
                     <div className="columnDetailBody">
                         <div>
-                            <p>{this.state.column.main_text}</p>
+                            <p className="textBody">{this.state.column.main_text}</p>
                         </div>
                     </div>
                         </div>

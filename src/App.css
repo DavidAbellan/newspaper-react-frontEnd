@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&family=Neucha&family=Roboto+Slab&family=Rock+Salt&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 .articleCategoryButton{
   align-items: center;
   background-color: initial;
@@ -95,6 +96,10 @@
 .textBlock{
   margin : 2em 2em 2em 2em;
   width: 75vw;
+}
+.textBody::first-letter{
+  font-size: 5em;
+  font-family: 'Lobster', cursive;
 }
 
 .searchText {

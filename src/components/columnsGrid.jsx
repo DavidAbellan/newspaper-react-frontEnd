@@ -1,19 +1,27 @@
 import Thanks from "../thanks.gif";
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 
 
 function ColumnGrid(props) {
-    const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-    const dias_semana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
     let columns = Object.values(props);
-    console.log("props", columns)
     if (props) {
         return (
             <div>
                 {columns.map((a, k) => {
+                    let id = a.id;
+                    let path = "/col/" + id;
                     return (
-                        <Card>
-                            <Card.Header as="h5">Columnas de opinión - El Mundo Tolai</Card.Header>
+                        <Card key={k}>
+                            <Card.Header as="h5">
+                            <Link to={{
+                                      pathname: path,
+                                      query: { id }
+                              }}>
+                                ver mas...
+                                </Link>
+                                </Card.Header>
                             <Card.Body>
                                 <Card.Title>{a.title}</Card.Title>
                                 <Card.Text>

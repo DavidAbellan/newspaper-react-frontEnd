@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 
 function footer (props){
        let authors =  Object.values(props);
-           let id = props.id
-
-     
           return (
               <div>
               <footer className="site-footer">

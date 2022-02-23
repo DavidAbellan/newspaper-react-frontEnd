@@ -127,7 +127,7 @@ class Detail extends React.Component {
                         {this.state.categories.map((a, k) => <Category key={k} {...a}></Category>)}
                     </div>
                     <div className="textBlock">
-                        <p>
+                        <p className="textBody">
                             {this.state.firstHalf}
                         </p>
                     </div>
@@ -172,7 +172,7 @@ class Detail extends React.Component {
                             {this.state.categories.map((a, k) => <Category key={k} {...a}></Category>)}
                         </div>
                         <div className="textBlock">
-                            <p>
+                            <p className="textBody">
                                 {this.state.firstHalf}
                             </p>
                         </div>
@@ -219,7 +219,7 @@ class Detail extends React.Component {
                         {this.state.categories.map((a, k) => <Category key={k} {...a}></Category>)}
                     </div>
                     <div className="textBlock">
-                        <p>
+                        <p className="textBody">
                             {this.state.article.main_text}
                         </p>
                     </div>
@@ -255,7 +255,7 @@ class Detail extends React.Component {
                             {this.state.categories.map((a, k) => <Category key={k} {...a}></Category>)}
                         </div>
                         <div className="textBlock">
-                            <p>
+                            <p className="textBody">
                                 {this.state.article.main_text}
                             </p>
                         </div>
