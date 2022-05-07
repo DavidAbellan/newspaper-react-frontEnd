@@ -3,6 +3,7 @@ import axios from "axios";
 import Header from "./columnDetailHeader";
 import Grid from "./articleDetailRelatedGrid";
 import Footer from "./footer";
+import url from "../backend"
 class ColumnDetail extends React.Component {
     constructor(props) {
         super(props);
@@ -14,9 +15,9 @@ class ColumnDetail extends React.Component {
             related: [],
             authors: []
         };
-        this.url = "http://localhost:3000/col/";
+        this.url = url.column;
         this.id = window.location.href.substring(26, window.location.href.length);
-        this.id2 = (this.id).replace("http://localhost:3000/col/", "");
+        this.id2 = (this.id).replace(url.column, "");
         this.getCol();
     }
 
@@ -51,7 +52,7 @@ class ColumnDetail extends React.Component {
 
                     <div className="articleBottom">
                         <div >
-                            <img alt={this.state.author.username} src={"http://localhost:3000/images/profiles/" + this.state.authorPhoto.filename} className="photoFootAuthor"></img>
+                            <img alt={this.state.author.username} src={url.profile + this.state.authorPhoto.filename} className="photoFootAuthor"></img>
                         </div>
                         <div className="articleBottomText">
                             <h1>{this.state.author.name}</h1>
@@ -76,7 +77,7 @@ class ColumnDetail extends React.Component {
     async getCol() {
         let content = await axios.get(this.url + this.id2);
         let related = await axios.get(this.url + "allfrom/" + content.data.author.id);
-        let authors = await axios.get("http://localhost:3000/authors/get");
+        let authors = await axios.get(url.getAllAuthors);
 
         this.setState({
             content: content.data,

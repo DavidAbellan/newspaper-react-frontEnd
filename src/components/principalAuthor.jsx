@@ -3,6 +3,7 @@ import axios from "axios";
 import Article from "./articleCategoryInSectionGrid";
 import loadingGif from '../loading.gif';
 import Columns from './columnsGrid';
+import url from "../backend";
 
 
 class PrincipalAuthor extends React.Component {
@@ -13,9 +14,9 @@ class PrincipalAuthor extends React.Component {
             articles: [],
             columns : []
         }
-        this.url = "http://localhost:3000/author/";
+        this.url = url.getAuthor;
         this.id = window.location.href.substring(27, window.location.href.length);
-        this.id2 = (this.id).replace("http://localhost:3000/author/", "");
+        this.id2 = (this.id).replace(url.getAuthor, "");
         this.getRelated();
 
     }
@@ -33,6 +34,7 @@ class PrincipalAuthor extends React.Component {
                         arts.push(a);
                     }
                 }
+
                 return (
                     this.setState({
                         articles: arts,
@@ -59,8 +61,10 @@ class PrincipalAuthor extends React.Component {
                 </div>
 
             );
-        } else {
+        } else if ( this.state.columns.length !== 0) {
+            return (
             <Columns {...this.state.columns}></Columns>
+            )
         }
     }
 

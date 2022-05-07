@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import url from "../backend";
 
 
 class ArticleInSectionGrid extends React.Component {
@@ -24,7 +25,7 @@ class ArticleInSectionGrid extends React.Component {
     const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
     const dias_semana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
     let fecha = new Date( this.state.createdAt)  
-    let photos = await axios.get('http://localhost:3000/getpicture/' + id);
+    let photos = await axios.get(url.getPicture + id);
     this.setState({
       photos: photos.data.photos,
       createdAt : String(dias_semana[fecha.getDay()] + ', ' + fecha.getDate() + ' de ' + meses[fecha.getMonth()] + ' de ' + fecha.getUTCFullYear())
@@ -56,7 +57,7 @@ class ArticleInSectionGrid extends React.Component {
             }}>
 
               <h2 className="categoriesTitle">{this.state.title}</h2>
-              <img src={"http://localhost:3000/images/" + this.state.photos[0].filename} alt={this.state.title} className="photoPrincipalOutstanding" />
+              <img src={url.images + this.state.photos[0].filename} alt={this.state.title} className="photoPrincipalOutstanding" />
             </Link>
 
             <div className="subhead">{this.state.createdAt + "  || "}

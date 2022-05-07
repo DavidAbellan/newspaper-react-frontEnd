@@ -2,8 +2,9 @@ import React from "react";
 import axios from 'axios';
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import url from "../backend";
 
-const url = "http://localhost:3000/";
+
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,7 @@ class Search extends React.Component {
     this.setState({
       name: event.target.value
     });
-    let content = await axios.get(url + "search/" + this.state.name);
+    let content = await axios.get(url.principal + "search/" + this.state.name);
 
     this.setState({
       result: content

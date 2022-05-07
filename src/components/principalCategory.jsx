@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Article from "./articleCategoryInSectionGrid";
 import loadingGif from '../loading.gif';
+import url from "../backend";
 
 
 class PrincipalCategory extends React.Component{
@@ -10,9 +11,9 @@ class PrincipalCategory extends React.Component{
         this.state = {
           content : []
         }
-        this.url =  "http://localhost:3000/cat/";
+        this.url =  url.getCategory;
         this.id = window.location.href.substring(26, window.location.href.length);
-        this.id2 = (this.id).replace("http://localhost:3000/cat/", "");
+        this.id2 = (this.id).replace(url.getCategory, "");
         this.getRelated();
     
     }

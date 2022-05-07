@@ -8,8 +8,8 @@ import Footer from './footer';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import SearchBox from './searchGrid';
 import loadingGif from '../loading.gif'
+import url from "../backend";
 
-const url = "http://localhost:3000/";
 
 class Principal extends React.Component {
   constructor(props) {
@@ -32,8 +32,8 @@ class Principal extends React.Component {
   async get_news() {
     const content =
       this.state.pages.length === 0
-        ? await axios.get(url)
-        : await axios.get(`${url}&page=${this.state.call}`)
+        ? await axios.get(url.principal)
+        : await axios.get(`${url.principal}&page=${this.state.call}`)
 
     this.state.pages.push({
       articles: content.data.articles,

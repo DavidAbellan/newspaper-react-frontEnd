@@ -5,6 +5,7 @@ import Category from "./articleCategoryButtonInDetails";
 import Footer from "../components/footer";
 import Grid from '../components/articleDetailRelatedGrid';
 import loadingGif from '../loading.gif'
+import url from "../backend";
 
 class Detail extends React.Component {
     constructor(props) {
@@ -26,9 +27,9 @@ class Detail extends React.Component {
             authorPhoto: "",
             authors:[]
         }
-        this.url = "http://localhost:3000/art/";
+    
         this.id = window.location.href.substring(26, window.location.href.length);
-        this.id2 = (this.id).replace("http://localhost:3000/art/", "");
+        this.id2 = (this.id).replace(url.article, "");
 
         this.getNew();
 
@@ -80,7 +81,7 @@ class Detail extends React.Component {
 
     async getNew() {
         let content = await axios.get(this.url + this.id2);
-        let authors = await axios.get( "http://localhost:3000/authors/get");
+        let authors = await axios.get(url.getAllAuthors);
 
         this.setState({
             content: content.data,
@@ -121,7 +122,7 @@ class Detail extends React.Component {
                     </h1>
                     </div>
                     <div className="articleDetailPhoto">
-                        <img alt={this.state.article.title} className="articleDetailimage" src={"http://localhost:3000/images/" + this.state.principalPhoto}></img>
+                        <img alt={this.state.article.title} className="articleDetailimage" src={url.images + this.state.principalPhoto}></img>
                     </div>
                     <div className="subhead">{"por " + this.state.author.name + "  " + this.state.time + "  || "}
                         {this.state.categories.map((a, k) => <Category key={k} {...a}></Category>)}
@@ -133,7 +134,7 @@ class Detail extends React.Component {
                     </div>
                     <div>
                         <div className="articleDetailPhoto">
-                            <img alt={this.state.article.title} className="articleDetailimage" src={"http://localhost:3000/images/" + this.state.secondPhoto}></img>
+                            <img alt={this.state.article.title} className="articleDetailimage" src={url.images + this.state.secondPhoto}></img>
                         </div>
                     </div>
                     <div className="textBlock">
@@ -142,7 +143,7 @@ class Detail extends React.Component {
                         </p>
                     </div>
                     <div className="articleBottom">
-                        <img alt={this.state.article.title} src={"http://localhost:3000/images/profiles/" + this.state.authorPhoto} className="photoFootAuthor"></img>
+                        <img alt={this.state.article.title} src={url.profile + this.state.authorPhoto} className="photoFootAuthor"></img>
                         <div className="articleBottomText">
 
                         <h1>{this.state.author.name}</h1>
@@ -166,7 +167,7 @@ class Detail extends React.Component {
                         </h1>
                         </div>
                         <div className="articleDetailPhoto">
-                            <img alt={this.state.article.title} className="articleDetailimage" src={"http://localhost:3000/images/" + this.state.principalPhoto}></img>
+                            <img alt={this.state.article.title} className="articleDetailimage" src={url.images + this.state.principalPhoto}></img>
                         </div>
                         <div className="subhead">{"por " + this.state.author.name + "  " + this.state.time + "  || "}
                             {this.state.categories.map((a, k) => <Category key={k} {...a}></Category>)}
@@ -178,7 +179,7 @@ class Detail extends React.Component {
                         </div>
                         <div>
                             <div className="articleDetailPhoto">
-                                <img alt={this.state.article.title} className="articleDetailimage" src={"http://localhost:3000/images/" + this.state.secondPhoto}></img>
+                                <img alt={this.state.article.title} className="articleDetailimage" src={url.images + this.state.secondPhoto}></img>
                             </div>
                         </div>
                         <div className="textBlock">
@@ -187,7 +188,7 @@ class Detail extends React.Component {
                             </p>
                         </div>
                         <div className="articleBottom">
-                            <img alt={this.state.article.title} src={"http://localhost:3000/images/profiles/" + this.state.authorPhoto}  className="photoFootAuthor"></img>
+                            <img alt={this.state.article.title} src={url.profile + this.state.authorPhoto}  className="photoFootAuthor"></img>
                             <div className="articleBottomText">
 
                             <h1>{this.state.author.name}</h1>
@@ -213,7 +214,7 @@ class Detail extends React.Component {
                     </h1>
                     </div>
                     <div className="articleDetailPhoto">
-                        <img alt={this.state.article.title} className="articleDetailimage" src={"http://localhost:3000/images/" + this.state.principalPhoto}></img>
+                        <img alt={this.state.article.title} className="articleDetailimage" src={url.images + this.state.principalPhoto}></img>
                     </div>
                     <div className="subhead">{"por " + this.state.author.name + "  " + this.state.time + "  || "}
                         {this.state.categories.map((a, k) => <Category key={k} {...a}></Category>)}
@@ -224,7 +225,7 @@ class Detail extends React.Component {
                         </p>
                     </div>
                     <div className="articleBottom">
-                        <img alt={this.state.article.title} src={"http://localhost:3000/images/profiles/" + this.state.authorPhoto}  className="photoFootAuthor"></img>
+                        <img alt={this.state.article.title} src={url.profile + this.state.authorPhoto}  className="photoFootAuthor"></img>
                         <div className="articleBottomText">
 
                         <h1>{this.state.author.name}</h1>
@@ -249,7 +250,7 @@ class Detail extends React.Component {
                         </h1>
                         </div>
                         <div className="articleDetailPhoto">
-                            <img alt={this.state.article.title} className="articleDetailimage" src={"http://localhost:3000/images/" + this.state.principalPhoto}></img>
+                            <img alt={this.state.article.title} className="articleDetailimage" src={url.images + this.state.principalPhoto}></img>
                         </div>
                         <div className="subhead">{"por " + this.state.author.name + "  " + this.state.time + "  || "}
                             {this.state.categories.map((a, k) => <Category key={k} {...a}></Category>)}
@@ -260,7 +261,7 @@ class Detail extends React.Component {
                             </p>
                         </div>
                         <div className="articleBottom">
-                            <img alt={this.state.article.title} src={"http://localhost:3000/images/profiles/" + this.state.authorPhoto}  className="photoFootAuthor"></img>
+                            <img alt={this.state.article.title} src={url.profile + this.state.authorPhoto}  className="photoFootAuthor"></img>
                             <div className="articleBottomText">
                               <p>{this.state.author.name}</p>
                               <p>{this.state.author.description}</p>
