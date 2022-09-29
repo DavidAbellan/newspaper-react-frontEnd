@@ -52,7 +52,7 @@ class ColumnDetail extends React.Component {
 
                     <div className="articleBottom">
                         <div >
-                            <img alt={this.state.author.username} src={url.profile + this.state.authorPhoto.filename} className="photoFootAuthor"></img>
+                            <img alt={this.state.author.username} src={ this.state.authorPhoto.path} className="photoFootAuthor"></img>
                         </div>
                         <div className="articleBottomText">
                             <h1>{this.state.author.name}</h1>

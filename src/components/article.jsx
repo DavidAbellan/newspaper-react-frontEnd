@@ -2,7 +2,6 @@ import React from "react";
 import Category from "./articleCategoryButton";
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import url from "../backend"
 
 function article(props) {
   let outstanding = props.outstanding;
@@ -26,7 +25,7 @@ function article(props) {
           }}>
 
             <h2>{title}</h2>
-            <img src={url.images + photo.filename} alt={title} className="photoPrincipalOutstanding" />
+            <img src={photo.path} alt={title} className="photoPrincipalOutstanding" />
           </Link>
 
           <div className="subhead">{"@" + author + " || " + created + "  || "}
@@ -45,7 +44,7 @@ function article(props) {
           }}>
             <h2 >{title}</h2>
             <div className="card-image small">
-              <img src={url.images + photo.filename} alt={title} className="photoPrincipalOutstanding" />
+              <img src={photo.path} alt={title} className="photoPrincipalOutstanding" />
             </div>
           </Link>
           <div className="subhead">{"@" + author + " || " + created + "  || "}
@@ -63,7 +62,7 @@ function article(props) {
         <div className="card mb-3" style={{ width: '945px', margin: '2em' }}>
           <div className="row no-gutters">
             <div className="newColumns">
-              <img className="new-image" alt={title} src={url.images + photo.filename} />
+              <img className="new-image" alt={title} src={photo.path} />
 
               <div className="titleNew">
                 <Link className="titleNotOutstanding" to={{
@@ -86,7 +85,7 @@ function article(props) {
         <div className="card mb-3" style={{ width: '945px', margin: '2em' }}>
           <div className="row no-gutters">
             <div className="newColumns">
-              <img className="new-image" alt={title} src={url.images + photo.filename} />
+              <img className="new-image" alt={title} src={photo.path} />
               <div className="titleNew">
                 <Link className="titleNotOutstanding" to={{
                   pathname: path,

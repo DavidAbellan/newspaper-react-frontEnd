@@ -15,7 +15,7 @@ class ArticleInSectionGrid extends React.Component {
       outstanding: props.outstanding,
       id: props.id,
       updatedAt: props.updatedAt,
-      photos: []
+      photos:[]
     }
     this.setPhotos(this.state.id);
   }
@@ -27,10 +27,11 @@ class ArticleInSectionGrid extends React.Component {
     let fecha = new Date( this.state.createdAt)  
     let photos = await axios.get(url.getPicture + id);
     this.setState({
-      photos: photos.data.photos,
+      photos: photos.data.articles[0].photo,
       createdAt : String(dias_semana[fecha.getDay()] + ', ' + fecha.getDate() + ' de ' + meses[fecha.getMonth()] + ' de ' + fecha.getUTCFullYear())
 
     })
+
  }
  
 
@@ -41,7 +42,7 @@ class ArticleInSectionGrid extends React.Component {
 
     let id = this.state.id;
     let path = '/art/' + id;
-    if (this.state.photos.length > 0) {
+    if (Array.isArray(this.state.photos)) {
       return (
 
         <div className="content">
@@ -57,7 +58,31 @@ class ArticleInSectionGrid extends React.Component {
             }}>
 
               <h2 className="categoriesTitle">{this.state.title}</h2>
-              <img src={url.images + this.state.photos[0].filename} alt={this.state.title} className="photoPrincipalOutstanding" />
+              <img src={this.state.photos.path} alt={this.state.title} className="photoPrincipalOutstanding" />
+            </Link>
+
+            <div className="subhead">{this.state.createdAt + "  || "}
+            </div>
+          </div>
+        </div>
+      );
+    } else if (this.state.photos instanceof Object) {
+      return (
+
+        <div className="content">
+          <Link to={{
+            pathname: '/'
+          }}>
+            <p>volver al principal</p>
+          </Link>
+          <div className="outstandingNewCategories">
+            <Link to={{
+              pathname: path,
+              query: { id }
+            }}>
+
+              <h2 className="categoriesTitle">{this.state.title}</h2>
+              <img src={this.state.photos.path} alt={this.state.title} className="photoPrincipalOutstanding" />
             </Link>
 
             <div className="subhead">{this.state.createdAt + "  || "}
@@ -69,6 +94,7 @@ class ArticleInSectionGrid extends React.Component {
       return (
         <h1>Cargando...</h1>
       );
+      
     }
 
   }

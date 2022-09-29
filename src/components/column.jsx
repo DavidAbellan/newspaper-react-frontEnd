@@ -1,15 +1,15 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import url from "../backend";
   
     function column (props){
         let id = props.id
+        console.log(props);
         if (props.title == null) {
             return (<h1>Cargando</h1>);
         } else {
              return (
                 <div className="column">
-                <img src ={url.profile+props.picture.filename}  alt={props.title}/>
+                <img src ={props.picture.path}  alt={props.title}/>
                 <Link className="titleNotOutstanding" to={{
                     pathname : "/col/" + id
                     }}>
